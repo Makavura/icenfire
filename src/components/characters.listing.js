@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import Link from 'react'
 export default class CharactersListing extends React.Component {
 
     state = {
@@ -9,7 +9,14 @@ export default class CharactersListing extends React.Component {
 
     constructor() {
         super();
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+     handleSubmit = () => {
+        console.log("doing something");
+        const win = window.open("/character", "_blank");
+        win.focus();
+      }
 
     componentDidMount() {
         axios.get(`https://anapioficeandfire.com/api/characters/`)
@@ -39,6 +46,9 @@ export default class CharactersListing extends React.Component {
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Played By
                   </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+View in new tab
+                  </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -46,41 +56,44 @@ export default class CharactersListing extends React.Component {
                                     this.state.characters.map((character, index) => {
                                         return (
                                             <tr >
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <div class="ml-4">
-                                                        <div class="text-sm font-medium text-gray-900">
-                                                            {
-                                                                character.name
-                                                            }
-                                                        </div>
-                                                        <div class="text-sm text-gray-500">
-                                                            {
-                                                                character.alias
-                                                            }
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                {
+                                                                    character.name
+                                                                }
+                                                            </div>
+                                                            <div class="text-sm text-gray-500">
+                                                                {
+                                                                    character.alias
+                                                                }
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                {
-                                                    character.gender
-                                                }
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                {
-                                                    character.culture
-                                                }
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {
-                                                    character.playedBy
-                                                }
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {
+                                                        character.gender
+                                                    }
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {
+                                                        character.culture
+                                                    }
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {
+                                                        character.playedBy
+                                                    }
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" onClick={this.handleSubmit}>
+                                                    
+                                                </td>
+                                            </tr>
 
                                         )
-                                        }
+                                    }
                                     )
                                 }
 
@@ -89,7 +102,7 @@ export default class CharactersListing extends React.Component {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
         )
     }
