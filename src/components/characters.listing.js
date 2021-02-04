@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class CharactersList extends React.Component {
+export default class CharactersListing extends React.Component {
 
     state = {
         characters: []
@@ -15,7 +15,6 @@ export default class CharactersList extends React.Component {
         axios.get(`https://anapioficeandfire.com/api/characters/`)
             .then(res => {
                 const characters = res.data;
-                // console.log(characters);
                 this.setState({ characters });
             })
     }
@@ -44,7 +43,7 @@ export default class CharactersList extends React.Component {
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 {
-                                    this.state.characters.map(character => {
+                                    this.state.characters.map((character, index) => {
                                         return (
                                             <tr >
                                             <td class="px-6 py-4 whitespace-nowrap">
