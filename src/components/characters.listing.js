@@ -13,7 +13,7 @@ export default class CharactersListing extends React.Component {
     }
 
      viewCharacterInNewTab = (index) => {
-        const win = window.open(`/character/:${index + 1}`, "_blank");
+        const win = window.open(`/character/${index + 1}`, "_blank");
         win.focus();
       }
 
