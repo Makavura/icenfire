@@ -9,12 +9,11 @@ export default class CharactersListing extends React.Component {
 
     constructor() {
         super();
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.viewCharacterInNewTab = this.viewCharacterInNewTab.bind(this);
     }
 
-     handleSubmit = () => {
-        console.log("doing something");
-        const win = window.open("/character", "_blank");
+     viewCharacterInNewTab = (index) => {
+        const win = window.open(`/character/:${index + 1}`, "_blank");
         win.focus();
       }
 
@@ -87,16 +86,12 @@ View in new tab
                                                         character.playedBy
                                                     }
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" onClick={this.handleSubmit}>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" onClick={ () => { this.viewCharacterInNewTab(index)}}>
                                                     
                                                 </td>
                                             </tr>
-
-                                        )
-                                    }
-                                    )
+                                        )})
                                 }
-
                             </tbody>
                         </table>
                     </div>
