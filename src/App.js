@@ -29,8 +29,7 @@ function App() {
             </div>
           </div>
         </Route>
-        <Route exact path="/character">
-          <Character></Character>
+        <Route exact path="/character/:index" children={<Character/>}>
         </Route>
         <Route exact path="*">
           <NotFound></NotFound>
