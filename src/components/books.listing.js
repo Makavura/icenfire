@@ -1,14 +1,24 @@
 import React from 'react';
 import axios from 'axios';
-
+import Modal from 'react-modal';
 export default class BooksListing extends React.Component {
 
     state = {
-        books: []
+        books: [],
+        modalIsOpen: false,
+        book: {},
+        index: null
     }
 
     constructor() {
         super();
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    viewBookInNewTab = () => {
+        let index = this.state.index;
+        const win = window.open(`/book/${index + 1}`, "_blank");
+        win.focus();
     }
 
     componentDidMount() {
@@ -17,6 +27,14 @@ export default class BooksListing extends React.Component {
                 const books = res.data;
                 this.setState({ books });
             })
+    }
+
+    toggleModal(book, index) {
+        console.warn(book, index);
+        const _ = this.state.modalIsOpen;
+        this.setState({ modalIsOpen: !_ });
+        this.setState({ book: book });
+        this.setState({ index: index });
     }
 
     render() {
@@ -54,7 +72,7 @@ export default class BooksListing extends React.Component {
                                 {
                                     this.state.books.map((book, index) => {
                                         return (
-                                            <tr >
+                                            <tr onClick={() => { this.toggleModal(book, index) }}  >
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="ml-4">
@@ -67,7 +85,7 @@ export default class BooksListing extends React.Component {
                                                             <div class="text-sm text-gray-500">
                                                                 {
                                                                     book.released
-                                                                }                                                           
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -119,6 +137,80 @@ export default class BooksListing extends React.Component {
                         </table>
                     </div>
                 </div>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onRequestClose={this.toggleModal}
+                    contentLabel="Character Modal" ariaHideApp={false}
+                    className="Modal bg-white shadow w-3/4 mt-10 border mx-auto border-black">
+                    <div className="bg-white  p-5 pl-5">
+                        <div className="flex justify-end pr-2 pt-2">
+                            <button onClick={this.toggleModal}>
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
+                        </div>
+                        <div>
+                        </div>
+                        <div className="m-5">
+                            <div >
+                                {
+                                    this.state.book.name
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.isbn
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.authors
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.numberOfPages
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.publisher
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.country
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.mediaType
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.released
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.characters
+                                }
+                            </div>
+                            <div>
+                                {
+                                    this.state.book.povCharacters
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className=" text-right flex-none mt-5 p-5" onClick={this.viewBookInNewTab}>
+                        <a className="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
+                            <span>
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                            </span>
+                        View Details in new tab</a>
+                    </div>
+                </Modal>
             </div>
         </div>
 

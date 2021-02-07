@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Link from 'react'
 import Modal from 'react-modal';
 export default class CharactersListing extends React.Component {
 
@@ -30,6 +29,7 @@ export default class CharactersListing extends React.Component {
         const win = window.open(`/character/${index + 1}`, "_blank");
         win.focus();
     }
+
 
     componentDidMount() {
         axios.get(`https://anapioficeandfire.com/api/characters/`)

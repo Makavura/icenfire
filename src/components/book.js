@@ -18,7 +18,56 @@ export default function Book() {
     })
     return (
         <div className="m-5">
+        <div >
+            {
+                data.name
+            }
         </div>
-
+        <div>
+            {
+                data.isbn
+            }
+        </div>
+        <div>
+            {
+                data.authors
+            }
+        </div>
+        <div>
+            {
+                data.numberOfPages
+            }
+        </div>
+        <div>
+            {
+                data.publisher
+            }
+        </div>
+        <div>
+            {
+                data.country
+            }
+        </div>
+        <div>
+            {
+                data.mediaType
+            }
+        </div>
+        <div>
+            {
+                data.released
+            }
+        </div>
+        <div>
+            {
+                data.characters
+            }
+        </div>
+        <div>
+            {
+                data.povCharacters
+            }
+        </div>
+    </div>
     )
 }
