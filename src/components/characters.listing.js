@@ -7,7 +7,8 @@ export default class CharactersListing extends React.Component {
     state = {
         characters: [],
         modalIsOpen: false,
-        character: {}
+        character: {},
+        index: null
     }
 
     constructor() {
@@ -16,14 +17,16 @@ export default class CharactersListing extends React.Component {
         this.toggleModal = this.toggleModal.bind(this);
     }
 
-    toggleModal(character) {
-        console.warn(character);
+    toggleModal(character, index) {
+        console.warn(character, index);
         const _ = this.state.modalIsOpen;
         this.setState({ modalIsOpen: !_ });
-        this.setState({ character: character })
+        this.setState({ character: character });
+        this.setState({index: index});
     }
 
-    viewCharacterInNewTab = (index) => {
+    viewCharacterInNewTab = () => {
+        let index = this.state.index;
         const win = window.open(`/character/${index + 1}`, "_blank");
         win.focus();
     }
@@ -56,12 +59,6 @@ export default class CharactersListing extends React.Component {
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Played By
                   </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        View in new tab
-                  </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        View Character Details
-                  </th>
 
                                 </tr>
                             </thead>
@@ -69,7 +66,7 @@ export default class CharactersListing extends React.Component {
                                 {
                                     this.state.characters.map((character, index) => {
                                         return (
-                                            <tr >
+                                            <tr onClick={() => { this.toggleModal(character, index) }}  >
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div class="ml-4">
@@ -101,12 +98,6 @@ export default class CharactersListing extends React.Component {
                                                         character.playedBy
                                                     }
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" onClick={() => { this.viewCharacterInNewTab(index) }}>
-                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" onClick={() => { this.toggleModal(character) }}>
-                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                                </td>
                                             </tr>
                                         )
                                     })
@@ -119,84 +110,99 @@ export default class CharactersListing extends React.Component {
             <Modal
                 isOpen={this.state.modalIsOpen}
                 onRequestClose={this.toggleModal}
-                contentLabel="Character Modal">
-                <button onClick={this.toggleModal}>close</button>
+                contentLabel="Character Modal" ariaHideApp={false}
+                className="Modal bg-white shadow w-3/4 mt-10 border mx-auto border-black">
+                <div className="bg-white  p-5 pl-5">
+                    <div className="flex justify-end pr-2 pt-2">
+                        <button onClick={this.toggleModal}>
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <div>
+                    </div>
+                    <div className="m-5">
+                        <div >
+                            {
+                                this.state.character.name
+                            }
+                        </div>
 
-                <div className="m-5">
-            <div>
-                {
-                    this.state.character.name
-                }
-            </div>
+                        <div>
+                            {
+                                this.state.character.gender
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.culture
+                            }
+                        </div>
 
-            <div>
-                {
-                    this.state.character.gender
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.culture
-                }
-            </div>
+                        <div>
+                            {
+                                this.state.character.bord
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.died
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.titles
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.father
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.mother
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.spouse
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.allegiances
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.books
+                            }
+                        </div>
 
-            <div>
-                {
-                    this.state.character.bord
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.died
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.titles
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.father
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.mother
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.spouse
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.allegiances
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.books
-                }
-            </div>
-
-            <div>
-                {
-                    this.state.character.povBooks
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.tvSeries
-                }
-            </div>
-            <div>
-                {
-                    this.state.character.playedBy
-                }
-            </div>
-        </div>
+                        <div>
+                            {
+                                this.state.character.povBooks
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.tvSeries
+                            }
+                        </div>
+                        <div>
+                            {
+                                this.state.character.playedBy
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div className=" text-right flex-none mt-5 p-5" onClick={this.viewCharacterInNewTab}>
+                    <a className="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >
+                     <span>
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                     </span>
+                        View Details in new tab</a>
+                </div>
             </Modal>
         </div >
 
