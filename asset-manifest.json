@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/icenfire/static/css/main.99186a02.chunk.css",
-    "main.js": "/icenfire/static/js/main.b0e7c39a.chunk.js",
-    "main.js.map": "/icenfire/static/js/main.b0e7c39a.chunk.js.map",
+    "main.css": "/icenfire/static/css/main.a7abf679.chunk.css",
+    "main.js": "/icenfire/static/js/main.8fc10e4a.chunk.js",
+    "main.js.map": "/icenfire/static/js/main.8fc10e4a.chunk.js.map",
     "runtime-main.js": "/icenfire/static/js/runtime-main.bf3c89ba.js",
     "runtime-main.js.map": "/icenfire/static/js/runtime-main.bf3c89ba.js.map",
-    "static/js/2.49a3842b.chunk.js": "/icenfire/static/js/2.49a3842b.chunk.js",
-    "static/js/2.49a3842b.chunk.js.map": "/icenfire/static/js/2.49a3842b.chunk.js.map",
+    "static/js/2.1c5efbc3.chunk.js": "/icenfire/static/js/2.1c5efbc3.chunk.js",
+    "static/js/2.1c5efbc3.chunk.js.map": "/icenfire/static/js/2.1c5efbc3.chunk.js.map",
     "index.html": "/icenfire/index.html",
-    "static/css/main.99186a02.chunk.css.map": "/icenfire/static/css/main.99186a02.chunk.css.map",
-    "static/js/2.49a3842b.chunk.js.LICENSE.txt": "/icenfire/static/js/2.49a3842b.chunk.js.LICENSE.txt"
+    "static/css/main.a7abf679.chunk.css.map": "/icenfire/static/css/main.a7abf679.chunk.css.map",
+    "static/js/2.1c5efbc3.chunk.js.LICENSE.txt": "/icenfire/static/js/2.1c5efbc3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bf3c89ba.js",
-    "static/js/2.49a3842b.chunk.js",
-    "static/css/main.99186a02.chunk.css",
-    "static/js/main.b0e7c39a.chunk.js"
+    "static/js/2.1c5efbc3.chunk.js",
+    "static/css/main.a7abf679.chunk.css",
+    "static/js/main.8fc10e4a.chunk.js"
   ]
 }
